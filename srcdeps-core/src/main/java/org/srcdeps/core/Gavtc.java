@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Maven Source Dependencies
+ * Copyright 2015-2018 Maven Source Dependencies
  * Plugin contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -171,6 +171,30 @@ public class Gavtc extends Gav {
     @Override
     public String toString() {
         return super.toString() + ":" + type + (classifier == null ? "" : ":" + classifier);
+    }
+
+    @Override
+    public int compareTo(Gav other) {
+        Gavtc o = (Gavtc) other;
+        int result = super.compareTo(o);
+        if (result != 0) {
+            return result;
+        } else {
+            result = this.type.compareTo(o.type);
+            if (result != 0) {
+                return result;
+            } else if (this.classifier == null) {
+                if (o.classifier == null) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            } else if (o.classifier == null) {
+                return 1;
+            } else {
+                return this.classifier.compareTo(o.classifier);
+            }
+        }
     }
 
 }

@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * different commits. The remote branch might have changed between the two fetch operations.
  * <p>
  * {@link FetchLog} uses an in-memory store and does not require a fetch from a remote SMC repository.
- * {@link BuildRefStore} on the other hand requires both persistent storage and a fetch from the remote.
+ * {@link BuildMetadataStore} on the other hand requires both persistent storage and a fetch from the remote.
  *
  * @author <a href="https://github.com/ppalaga">Peter Palaga</a>
  * @since 3.2.1

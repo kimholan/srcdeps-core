@@ -23,7 +23,7 @@ package org.srcdeps.core;
  * @author <a href="https://github.com/ppalaga">Peter Palaga</a>
  * @since 3.2.1
  */
-public interface BuildRefStore {
+public interface BuildMetadataStore {
 
     /**
      * Returns a {@code commitId} out of which the given {@code request} was built in the past or {@code null} if the
@@ -34,16 +34,18 @@ public interface BuildRefStore {
      * @return a non-null {@code commitId} out of which the given {@link BuildRequest} built in the past or {@code null}
      *         if the {@link BuildRequest} represeneted by the given {@link BuildRequestId} was not built yet.
      */
-    String retrieve(BuildRequestId request);
+    String retrieveCommitId(BuildRequestId request);
+    String retrieveSha1(BuildRequestId request, Gavtc gavtc);
 
     /**
      * Link the given {@code BuildRequestId} with the given {@code commitId}.
      *
      * @param request
-     *            the {@link BuildRequest} to add to this {@link BuildRefStore}
+     *            the {@link BuildRequest} to add to this {@link BuildMetadataStore}
      * @param commitId
      *            the commitId out of which the given {@code request} was built
      */
-    void store(BuildRequestId request, String commitId);
+    void storeCommitId(BuildRequestId request, String commitId);
+    void storeSha1(BuildRequestId request, Gavtc gavtc, String sha1);
 
 }
